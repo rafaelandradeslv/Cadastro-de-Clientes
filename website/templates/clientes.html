@@ -10,20 +10,29 @@
     <thead>
         <tr>
             {%for title in titles %}
-                <th>{{title.title()}}</th>
+            <th>{{title.title()}}</th>
             {% endfor %}
         </tr>
     </thead>
 
     <tbody>
         {% for index, row in df.iterrows() %}
-            <tr>
-                {%for title in titles %}
-                    <td>{{row[title]}}</td>
-                {% endfor %}
-            </tr>
+        <tr>
+            {%for title in titles %}
+            <td>{{row[title]}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        {% for i in pessoas %}
+        <tr>
+            <td>{{i.nome}}</td>
+            <td>{{i.sobrenome}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.cep}}</td>
+        </tr>
         {% endfor %}
     </tbody>
 </table>
+
 
 {% endblock %}
