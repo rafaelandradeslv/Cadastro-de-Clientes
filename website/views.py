@@ -1,43 +1,14 @@
-from os import sep
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-import json
-import requests
 import pandas as pd
-import numpy as np
 
+# -- MODELOS --
+from models.models import Pessoa, Busca
+
+# -- INÍCIO DO APP --
 views = Blueprint('views', __name__)
 
-# -- OBJETO CLIENTE --
-
-
-class Pessoa:
-    df_principal = pd.read_csv('data/clientes.csv', sep=';')
-    columns_name = []
-    for i in df_principal:
-        columns_name.append(i)
-
-    def __init__(self, nome, sobrenome, email, cep):
-        self.nome = nome
-        self.sobrenome = sobrenome
-        self.email = email
-        self.cep = cep
-
-    # TODO buscar informações de endereço da API do ViaCEP (https://viacep.com.br/)
-
-    def busca(self):
-        response = requests.get(
-            f'http://www.viacep.com.br/ws/{self.cep}/json/')
-        # validando cep
-        if response.status_code == 200:
-            dados_json = json.loads(response.text)
-            df = pd.DataFrame(data=dados_json, index=[0])
-        else:
-            print('Cep inválido !')
-        return df
 
 # -- PÁGINA INICIAL --
-
-
 @views.route('/')
 def home():
     """
@@ -48,7 +19,6 @@ def home():
 
 
 # -- CADASTRO --
-
 @views.route('/cadastro')
 def cadastro():
     return render_template('cadastro.html')
@@ -61,52 +31,70 @@ def novo_cliente():
     Necessário também salvar as informações de endereço provindas da API de CEP
     """
     # TODO pegar informações do forms
-    p1 = request.form['nome']
-    p2 = request.form['sobrenome']
-    p3 = request.form['email']
-    p4 = request.form['cep']
+    info_nome = request.form['nome']
+    info_sobrenome = request.form['sobrenome']
+    info_email = request.form['email']
+    info_cep = request.form['cep']
 
-    pessoa1 = Pessoa(p1, p2, p3, p4)
+    pessoa1 = Pessoa(info_nome, info_sobrenome, info_email, info_cep)
 
-    dicio = {
+    pessoa = {
         'nome': pessoa1.nome,
         'sobrenome': pessoa1.sobrenome,
         'email': pessoa1.email,
     }
-    df1 = pd.DataFrame(data=dicio, index=[0])
+    # coleta as informações cadastradas
+    df1 = pd.DataFrame(data=pessoa, index=[0])
 
     # TODO criar nova linha no arquivo csv
+    print('cheguei na api')
+    df2 = pessoa1.api()
+    print('passei da api')
+    try:
+        # coleta informações da API
+        # une as informações
+        result = pd.concat([df1, df2], axis=1, ignore_index=True)
+        result.columns = Pessoa.columns_name  # renomeia as informações
 
-    df2 = pessoa1.busca()
-    result = pd.concat([df1, df2], axis=1, ignore_index=True)
-    result.columns = Pessoa.columns_name
+        df_final = pd.concat([Pessoa.df_principal, result]
+                             )  # constrói o dataset final
 
-    df_final = pd.concat([Pessoa.df_principal, result])
+        Pessoa.df_principal = df_final
 
-    Pessoa.df_principal = df_final
+        flash('Cliente cadastrado com sucesso')
+        print('deu certo em views')
+        return redirect(url_for('views.clientes'))
 
-    return redirect(url_for('views.clientes'))
+    except:
+        print('deu errado em views')
+        flash('Cep Não Encontrado ou Inválido')
+        return redirect(url_for('views.cadastro'))
+
 
 # -- CONSULTA CEP --
-
-
 @views.route('/consulta-cep')
 def consulta_cep():
-    # TODO pegar CEP do forms
-
-    # TODO mostrar no html as informações obtidas
-    
-    return render_template('consulta_cep.html')
+    return render_template('consulta_cep.html', dic=Busca.dicionario)
 
 
+@views.route('/validando_busca', methods=['POST', ])
+def consulta():
+    busca_cep = request.form['cep_busca']
+    result = Busca(busca_cep)
+    busca_final = Busca.pesquisa(result)
+    Busca.dicionario = busca_final
+    return redirect(url_for('views.consulta_cep'))
+
+
+# -- CLIENTES CADASTRADOS --
 @views.route('/clientes')
 def clientes():
     """
     Rota para aba de clientes. Mostra na tela uma representação do csv de clientes
     Não é necessário modificar nada nessa função
     """
-    Pessoa.df_principal.to_csv('clientes.csv', index=False, sep=';')
-
-    return render_template('clientes.html', 
-                            df=Pessoa.df_principal, 
-                            titles=Pessoa.df_principal.columns.values)
+    Pessoa.df_principal.to_csv('data/clientes.csv', index=False,
+                               sep=';')  # executa a função e salva os dados no csv
+    return render_template('/clientes.html',
+                           df=Pessoa.df_principal,
+                           titles=Pessoa.df_principal.columns.values)
