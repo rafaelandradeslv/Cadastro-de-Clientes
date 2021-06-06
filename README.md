@@ -4,7 +4,7 @@
 
 Utilizando API : https://viacep.com.br/
 
-A sacada deste projeto não é apenas cadastrar clientes, é adicionar o endereço do mesmo assim automaticamente
+A sacada deste projeto não é apenas cadastrar clientes, é adicionar o endereço do mesmo automaticamente
 assim que o campo de CEP é preenchido. Outro ponto interessante é dar ao cliente a possibilidade de buscar os 
 dados de endereço através da página de busca.
 
