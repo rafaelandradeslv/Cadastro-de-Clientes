@@ -9,7 +9,7 @@ assim que o campo de CEP é preenchido. Outro ponto interessante é dar ao clien
 dados de endereço através da página de busca.
 
 <h1 align="center">
-  <img alt="NextLevelWeek" src="../static/video/projeto 1 - cadastro clientes flask.gif" />
+  <img src="website/static/video/projeto1-cadastro-clientes-flask.gif" alt="">
 </h1>
 
 CONCLUSÃO :
