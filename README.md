@@ -1,6 +1,6 @@
 # Cadastro de Clientes
 
-### Este projeto foi construído com FLask
+### Este projeto foi construído com FLask, API, Bootstrap
 
 Utilizando API : https://viacep.com.br/
 
