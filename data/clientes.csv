@@ -1,3 +1,7 @@
 nome;sobrenome;email;cep;logradouro;complemento;bairro;localidade;uf;ibge;gia;ddd;siafi
-Rodrigo;Pires;rodrigo@email.com;01001000;Praça da Sé;lado ímpar;Sé;São Paulo;SP;3550308;1004;11;7107
-Guilherme;Fernandes;guilherme@email.com;01001010;Rua Filipe de Oliveira;;Sé;São Paulo;SP;3550308;1004;11;7107
+Rodrigo;Pires;rodrigo@email.com;1001000;Praça da Sé;lado ímpar;Sé;São Paulo;SP;3550308;1004.0;11;7107
+Guilherme;Fernandes;guilherme@email.com;1001010;Rua Filipe de Oliveira;;Sé;São Paulo;SP;3550308;1004.0;11;7107
+Rafa;Silva;rafa@com;25922-000;Rua J;;Parque Itinga (Suruí);Magé;RJ;3302502;;21;5849
+asras;asda;ad@asd;25922-160;Rua Carijós;;Vila Nova (Suruí);Magé;RJ;3302502;;21;5849
+bahia;asd;rasd@asda;25922-100;Estrada do Partido;;Vila Nova (Suruí);Magé;RJ;3302502;;21;5849
+thiago;tt;tt@tt;25922-360;Rua G;;Vila Nova (Suruí);Magé;RJ;3302502;;21;5849

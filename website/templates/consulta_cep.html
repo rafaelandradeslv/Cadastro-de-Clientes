@@ -5,13 +5,21 @@
 <br>
 <h1 align="center">Consulta CEP</h1>
 
-<form method="POST">
+<form action="{{ url_for('views.consulta') }}" method="POST">
     <div class="container">
         <div class="form-group">
             <div class="row">
                 <div class="col-6">
                     <label for="cep">CEP:</label>
-                    <input type="text" id="cep" name="cep" class="form-control">
+                    <input type="text" minlength="8" maxlength="8" id="cep" name="cep_busca" class="form-control"
+                        required>
+                    <style>
+                        input[type=number]::-webkit-inner-spin-button,
+                        input[type=number]::-webkit-outer-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+                    </style>
                 </div>
             </div>
         </div>
@@ -22,13 +30,15 @@
 
 <br>
 
+
+
 <div class="container">
     <div class="row">
         <div class="col-4">
             <label for="cep">CEP:</label>
         </div>
         <div class="col-8">
-            <label for="cep_result">{{ cep }}</label>
+            <label for="cep_result">{{ dic['cep'] }}</label>
         </div>
     </div>
 
@@ -37,7 +47,7 @@
             <label for="logradouro">Logradouro:</label>
         </div>
         <div class="col-8">
-            <label for="logradouro_result">{{ logradouro }}</label>
+            <label for="logradouro_result">{{ dic['logradouro'] }}</label>
         </div>
     </div>
 
@@ -46,7 +56,7 @@
             <label for="complemento">Complemento:</label>
         </div>
         <div class="col-8">
-            <label for="complemento_result">{{ complemento }}</label>
+            <label for="complemento_result">{{ dic['complemento'] }}</label>
         </div>
     </div>
 
@@ -55,7 +65,7 @@
             <label for="bairro">Bairro:</label>
         </div>
         <div class="col-8">
-            <label for="bairro_result">{{ bairro }}</label>
+            <label for="bairro_result">{{ dic['bairro'] }}</label>
         </div>
     </div>
 
@@ -64,7 +74,7 @@
             <label for="localidade">Localidade:</label>
         </div>
         <div class="col-8">
-            <label for="localidade_result">{{ localidade }}</label>
+            <label for="localidade_result">{{ dic['localidade'] }}</label>
         </div>
     </div>
 
@@ -73,7 +83,7 @@
             <label for="uf">UF:</label>
         </div>
         <div class="col-8">
-            <label for="uf_result">{{ uf }}</label>
+            <label for="uf_result">{{ dic['uf'] }}</label>
         </div>
     </div>
 
@@ -82,7 +92,7 @@
             <label for="ibge">IBGE:</label>
         </div>
         <div class="col-8">
-            <label for="ibge_result">{{ ibge }}</label>
+            <label for="ibge_result">{{ dic['ibge'] }}</label>
         </div>
     </div>
 
@@ -91,7 +101,7 @@
             <label for="gia">GIA:</label>
         </div>
         <div class="col-8">
-            <label for="gia_result">{{ gia }}</label>
+            <label for="gia_result">{{ dic['gia'] }}</label>
         </div>
     </div>
 
@@ -100,7 +110,7 @@
             <label for="ddd">DDD:</label>
         </div>
         <div class="col-8">
-            <label for="ddd_result">{{ ddd }}</label>
+            <label for="ddd_result">{{ dic['ddd'] }}</label>
         </div>
     </div>
 
@@ -109,7 +119,7 @@
             <label for="siafi">Siafi:</label>
         </div>
         <div class="col-8">
-            <label for="siafi_result">{{ siafi }}</label>
+            <label for="siafi_result">{{ dic['siafi'] }}</label>
         </div>
     </div>
 
