@@ -1,10 +1,15 @@
-# targit
-Processo Seletivo TARGIT
+# Cadastro de Clientes
 
-<strong> ANOTAÇÕES </strong>
-    Adicionei uma verificação de caracteres ao input, para garantir que seja preenchido
-    apenas 8 caracteres. Assim como garanti que o campo input seja obrigatóriamente
-    preenchido apenas com números    
+Este projeto foi construído com FLask
+
+Utilizando API : https://viacep.com.br/
+
+A sacada deste projeto não é apenas cadastrar clientes, é adicionar o endereço do mesmo assim automaticamente
+assim que o campo de CEP é preenchido. Outro ponto interessante é dar ao cliente a possibilidade de buscar os 
+dados de endereço através da página de busca.
 
 
-    
+CONCLUSÃO :
+Projeto de estudo voltado para treinar habilidades de desenvolvimento back-end, flask, consulta api e web.
+
+Faça uso deste projeto para consultar, dar sugestões e dicas para melhorar o código.
