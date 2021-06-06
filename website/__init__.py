@@ -1,6 +1,3 @@
-## -- Script inicial do módulo website --
-## Não é necessário alterar nada nesse arquivo
-
 from flask import Flask
 
 def create_app():

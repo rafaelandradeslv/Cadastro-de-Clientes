@@ -30,7 +30,7 @@ def novo_cliente():
     Função para cadastro de novos clientes. Deverá pegar as informações do forms e salvar numa nova linha no csv.
     Necessário também salvar as informações de endereço provindas da API de CEP
     """
-    # TODO pegar informações do forms
+    
     info_nome = request.form['nome']
     info_sobrenome = request.form['sobrenome']
     info_email = request.form['email']
@@ -46,7 +46,7 @@ def novo_cliente():
     # coleta as informações cadastradas
     df1 = pd.DataFrame(data=pessoa, index=[0])
 
-    # TODO criar nova linha no arquivo csv
+    
     print('cheguei na api')
     df2 = pessoa1.api()
     print('passei da api')

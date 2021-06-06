@@ -22,7 +22,7 @@ class Pessoa:
         self.cep = cep
 
     def api(self): 
-        # TODO buscar informações de endereço da API do ViaCEP (https://viacep.com.br/)
+        # Busca informação de endereço da API do ViaCEP (https://viacep.com.br/)
         print('cheguei em models')
         response = requests.get(f'http://www.viacep.com.br/ws/{self.cep}/json/') 
         print(f'este e o valor de {response}')
