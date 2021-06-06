@@ -1,4 +1,3 @@
-import re
 import requests
 import pandas as pd
 import json
@@ -36,9 +35,6 @@ class Pessoa:
         else:
             print('deu errado')
             return response
-
-
-    
 
 class Busca:
     dicionario = ''
