@@ -1,8 +1,10 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 import pandas as pd
 
+
 # -- MODELOS --
 from models.models import Pessoa, Busca
+
 
 # -- INÍCIO DO APP --
 views = Blueprint('views', __name__)
@@ -11,10 +13,14 @@ views = Blueprint('views', __name__)
 # -- PÁGINA INICIAL --
 @views.route('/')
 def home():
+    
+
     """
     Rota inicial.
     Não é necessário modificar nada nessa função
     """
+
+
     return render_template('home.html')
 
 
@@ -26,17 +32,22 @@ def cadastro():
 
 @views.route('/novo_cliente', methods=['POST', ])
 def novo_cliente():
+
+
     """
     Função para cadastro de novos clientes. Deverá pegar as informações do forms e salvar numa nova linha no csv.
     Necessário também salvar as informações de endereço provindas da API de CEP
     """
     
+
     info_nome = request.form['nome']
     info_sobrenome = request.form['sobrenome']
     info_email = request.form['email']
     info_cep = request.form['cep']
 
+
     pessoa1 = Pessoa(info_nome, info_sobrenome, info_email, info_cep)
+
 
     pessoa = {
         'nome': pessoa1.nome,
